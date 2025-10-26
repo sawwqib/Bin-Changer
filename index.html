@@ -37,38 +37,36 @@
     .btn-outline{border:1px solid #ff6574;color:#ff6574;background:none;}
     .btn-outline:hover{background:#ff6574;color:white;}
 
-    .tdwnl-btn{
-      background:#ffcf4d;color:#000;margin-top:25px;
-      display:inline-flex;align-items:center;padding:10px 18px;
-      position: relative;
-    }
-    
-    .dwnlds-counter {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: #ff6574;
-      color: white;
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
+    .counter-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
-      font-weight: bold;
-      transition: all 0.3s ease;
+      margin-top: 10px;
+      gap: 10px;
     }
+    
+    .counter-badge {
+  background: #ffcf4d;
+  color: rgb(53, 53, 53);
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+  border: 2px solid #000;
+}
 
-    .counter-animation {
-      animation: pulse 0.5s ease-in-out;
-    }
+.counter-badge span {
+  margin-bottom: 2px;
+}
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-      100% { transform: scale(1); }
-    }
+.counter-badge img {
+  height: 20px;
+}
 
     .feature{
       background:#eef4ff;padding:60px 0;
@@ -100,27 +98,6 @@
         color: #ff6574;
         transform: translateY(-2px);
     }
-
-    /* Toast notification */
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #4CAF50;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 5px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transform: translateY(100px);
-      opacity: 0;
-      transition: all 0.3s ease;
-      z-index: 1000;
-    }
-
-    .toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
   </style>
 </head>
 <body>
@@ -141,18 +118,20 @@
     <p>Easily change your Windows Recycle Bin to Cat icons</p>
     <a href="images.zip" download class="btn btn-primary" id="downloadBtn">Download</a>
     <a href="https://github.com/sawwqib/Meow-Bin" class="btn btn-outline">Open Source</a>
-    <br>
-    <button class="btn tdwnl-btn" id="tdwnlBtn">
-      Total Downloads
-      <span class="dwnlds-counter" id="dwnldsCounter">0</span>
-    </button>
+    <br></br>
+    <div class="counter-container">
+      <div class="counter-badge">
+        <span>Total Downloads</span>
+        <img src="https://count.getloli.com/@meowbinwebsite?name=meowbinwebsite&theme=morden-num&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto" alt="Download Counter" id="counterImage">
+      </div>
+    </div>
   </section>
 
   <section class="feature">
     <div class="container feature-content">
       <div class="feature-text">
         <h2>Easy to change</h2>
-        <p>Go to Settings <b>></b> Themes <b>></b> Desktop Icon Settings <b>&</b> Select Cat Images For Recycle bin.</p>
+        <p>Go to Settings <b>></b> Themes <b>></b> Desktop Icon Settings & Select Cat Images For Recycle bin.</p>
       </div>
       <div class="feature-image">
         <img src="https://res.cloudinary.com/datfjlguq/image/upload/v1761464632/funq18mt72fb9iy0ydfi.png" alt="Demo Screenshot">
@@ -177,69 +156,5 @@
     </div>
     <p style="margin-top:30px;text-align:center;">© 2025 Meow Bin | Made With &hearts; By <a href="https://sawwqib.vercel.app">Saqib</a></p>
   </footer>
-
-  <div class="toast" id="toast">Downloading...</div>
-
-  <script>
-    console.log("Meow Bin website loaded!");
-
-    // Track unique downloads using localStorage
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize downloads counter
-      let downloads = localStorage.getItem('meowbinDownloads');
-      if (downloads === null) {
-        downloads = 0;
-      } else {
-        downloads = parseInt(downloads);
-      }
-      
-      // Update the counter display
-      document.getElementById('dwnldsCounter').textContent = downloads;
-    });
-
-    // Download button click handler
-    document.getElementById('downloadBtn').addEventListener('click', function(e) {
-      // Prevent immediate navigation to allow counting
-      e.preventDefault();
-      
-      // Get current downloads count
-      let downloads = localStorage.getItem('meowbinDownloads');
-      if (downloads === null) {
-        downloads = 0;
-      } else {
-        downloads = parseInt(downloads);
-      }
-      
-      // Increment the download count
-      downloads++;
-      
-      // Save the updated count back to localStorage
-      localStorage.setItem('meowbinDownloads', downloads);
-      
-      // Update the counter display with animation
-      const counter = document.getElementById('dwnldsCounter');
-      counter.textContent = downloads;
-      counter.classList.add('counter-animation');
-      
-      // Remove animation class after animation completes
-      setTimeout(() => {
-        counter.classList.remove('counter-animation');
-      }, 500);
-      
-      // Show toast notification
-      const toast = document.getElementById('toast');
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-      
-      // Actually download the file after a short delay
-      setTimeout(() => {
-        window.location.href = 'images.zip';
-      }, 500);
-    });
-  </script>
-
 </body>
 </html>
-
