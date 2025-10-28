@@ -1,4 +1,4 @@
-$version = "v1.0-MeowBin"
+$version = "v1.0-BinChanger"
 $recycle_bin_themes_path = "$env:userprofile\Pictures\RecycleBinThemes"
 $ProgressPreference = "SilentlyContinue"
 
@@ -6,13 +6,10 @@ $ProgressPreference = "SilentlyContinue"
 $supported_themes = @("cat", "hitler")
 
 Write-Host @"
-  __  __                       ____  _     
- |  \/  | ___ _____   _____   | __ )(_)_ __
- | |\/| |/ _ \_  / | | |_  /   |  _ \| | '_ \
- | |  | | (_) / /| |_| |/ /    | |_) | | | | |
- |_|  |_|\___/___|\__,_/___|   |____/|_|_| |_|
+ 	    BIN CHANGER
+                                                                                            
 
-           MeowBin Recycle Bin Themer $version
+           Recycle Bin Themer $version by @sawwqib
 "@
 
 $textInfo = (Get-Culture).TextInfo
