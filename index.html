@@ -3,248 +3,791 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meow Bin</title>
+  <title>Bin Changer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="Icon" href="https://res.cloudinary.com/datfjlguq/image/upload/v1761465448/tv9psmeqf1dctq5j73fo.jpg">
+  <link rel="icon" href="https://res.cloudinary.com/datfjlguq/image/upload/v1761465448/tv9psmeqf1dctq5j73fo.jpg">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-    *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
-    body{background:#f8f8f8;color:#333;line-height:1.6;}
-
-    a{text-decoration:none;color:inherit;}
-    img{max-width:100%;display:block;}
-
-    .container{width:90%;max-width:1100px;margin:auto;}
-
-    header{background:#ffffff;padding:18px 0;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:sticky;top:0;z-index:10;}
-    header .logo{font-weight:600;font-size:20px;color:#ff6574;}
-    header nav{float:right;}
-    header nav a{margin-left:20px;font-size:15px;color:#555;transition:0.2s;}
-    header nav a:hover{color:#ff6574;}
-
-    .hero{
-      background:#ffe1e8;
-      text-align:center;
-      padding:70px 20px;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
-    .hero img{width:180px;margin:auto;}
-    .hero h1{font-size:36px;margin:15px 0;color:#222;}
-    .hero p{font-size:15px;color:#555;margin-bottom:25px;}
-
-    .btn{padding:10px 20px;border-radius:5px;font-size:15px;cursor:pointer;display:inline-block;transition:0.3s;}
-    .btn-primary{background:#ff6574;color:white;border:none;margin-right:10px;}
-    .btn-primary:hover{background:#e35362;}
-    .btn-outline{border:1px solid #ff6574;color:#ff6574;background:none;}
-    .btn-outline:hover{background:#ff6574;color:white;}
-
-    .counter-container {
+    
+    :root {
+      --primary: #ff6574;
+      --secondary: #6c63ff;
+      --accent: #ffcf4d;
+      --dark: #1a1a2e;
+      --light: #f8f8f8;
+      --gray: #6c757d;
+    }
+    
+    body {
+      background-color: var(--light);
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .logo {
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin-top: 10px;
       gap: 10px;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--primary);
+    }
+    
+    .logo i {
+      font-size: 28px;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    nav a:hover {
+      color: var(--primary);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #ffe1e8 0%, #eef4ff 100%);
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 101, 116, 0.1);
+      top: -150px;
+      right: -100px;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(108, 99, 255, 0.1);
+      bottom: -100px;
+      left: -50px;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+    
+    .hero h1 span {
+      color: var(--primary);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--gray);
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .hero-image {
+      width: 200px;
+      margin: 0 auto 30px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .hero-image img {
+      width: 100%;
+      display: block;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      border: none;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+      box-shadow: 0 5px 15px rgba(255, 101, 116, 0.3);
+    }
+    
+    .btn-primary:hover {
+      background-color: #e55362;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 101, 116, 0.4);
+    }
+    
+    .btn-secondary {
+      background-color: var(--secondary);
+      color: white;
+      box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      background-color: #5a52e0;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    .counter-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
     }
     
     .counter-badge {
-  background: #ffcf4d;
-  color: rgb(53, 53, 53);
-  padding: 8px 15px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  text-align: center;
-  border: 2px solid #000;
-}
-
-.counter-badge span {
-  margin-bottom: 2px;
-}
-
-.counter-badge img {
-  height: 20px;
-}
-
-    .feature{
-      background:#eef4ff;padding:60px 0;
+      background: var(--accent);
+      color: var(--dark);
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 5px 15px rgba(255, 207, 77, 0.3);
     }
-    .feature-content{
-      display:flex;align-items:center;gap:40px;flex-wrap:wrap;
+    
+    .counter-badge i {
+      font-size: 1.2rem;
     }
-    .feature-text{flex:1;}
-    .feature-text h2{font-size:26px;margin-bottom:15px;}
-    .feature-text p{font-size:15px;color:#444;}
-    .feature-image{flex:1;text-align:right;}
-
-    /* New Download Button Section */
-    .download-section {
-      padding: 60px 0;
-      background: #fff;
+    
+    /* Features Section */
+    .features {
+      padding: 100px 0;
+      background-color: white;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
       text-align: center;
     }
     
-    .download-section h2 {
-      font-size: 26px;
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 1.8rem;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .feature-card p {
+      color: var(--gray);
+    }
+    
+    /* How to Use Section */
+    .how-to-use {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .how-to-use-content {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+    
+    .how-to-use-text {
+      flex: 1;
+    }
+    
+    .how-to-use-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+    
+    .how-to-use-text p {
+      color: var(--gray);
       margin-bottom: 30px;
-      color: #222;
     }
     
-    .download-button-container {
-      position: relative;
-      display: inline-block;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      max-width: 400px;
-      width: 100%;
-    }
-    
-    .download-button-container:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-    }
-    
-    .download-button-container img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    
-    .download-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 101, 116, 0.85);
+    .steps {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      gap: 25px;
+    }
+    
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
       color: white;
-      opacity: 0;
-      transition: opacity 0.3s;
-      padding: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      flex-shrink: 0;
     }
     
-    .download-button-container:hover .download-overlay {
-      opacity: 1;
+    .step-content h4 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+      color: var(--dark);
     }
     
-    .download-overlay h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
+    .step-content p {
+      color: var(--gray);
+      font-size: 0.95rem;
     }
     
-    .download-overlay p {
-      font-size: 14px;
-      margin-bottom: 20px;
+    .how-to-use-visual {
+      flex: 1;
       text-align: center;
     }
     
-    .download-overlay .btn {
-      background: white;
-      color: #ff6574;
-      font-weight: 600;
+    .gif-container {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
     
-    .download-overlay .btn:hover {
-      background: #f0f0f0;
+    .gif-container img {
+      width: 100%;
+      display: block;
     }
-
-    footer{
-      background:#0f0f17;color:#b3b3b3;padding:40px 0;
-      font-size:14px;margin-top:20px;
+    
+    /* Themes Section */
+    .themes {
+      padding: 100px 0;
+      background-color: white;
     }
-    footer a{color:#fff;}
-    footer .footer-content{
-      display:flex;justify-content:space-between;flex-wrap:wrap;
+    
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
     }
+    
+    .theme-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .theme-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .theme-image {
+      height: 180px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
+    }
+    
+    .theme-image img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.5s;
+    }
+    
+    .theme-card:hover .theme-image img {
+      transform: scale(1.05);
+    }
+    
+    .theme-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .theme-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .theme-content p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+    
+    .theme-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .theme-tag {
+      background: rgba(255, 101, 116, 0.1);
+      color: var(--primary);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    /* Download Section */
+    .download {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .download h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .download p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      opacity: 0.9;
+    }
+    
+    .download-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .download .btn {
+      background: white;
+      color: var(--primary);
+    }
+    
+    .download .btn:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: #b3b3b3;
+      padding: 70px 0 30px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    
+    .footer-column h3 {
+      color: white;
+      font-size: 1.3rem;
+      margin-bottom: 25px;
+      position: relative;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+      bottom: -10px;
+      left: 0;
+    }
+    
+    .footer-column p {
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: #b3b3b3;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+    
     .social-icons a {
-        margin-right: 15px;
-        font-size: 18px;
-        transition: 0.2s;
-        color: #b3b3b3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s;
     }
-
+    
     .social-icons a:hover {
-        color: #ff6574;
-        transform: translateY(-2px);
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+    }
+    
+    .copyright a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .how-to-use-content {
+        flex-direction: column;
+      }
+      
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      nav ul {
+        gap: 20px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .download-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero {
+        padding: 60px 0;
+      }
+      
+      .features, .how-to-use, .themes, .download {
+        padding: 70px 0;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
-
+  <!-- Header -->
   <header>
     <div class="container">
-      <span class="logo">Meow Bin</span>
-      <nav>
-        <a href="#">Home</a>
-        <a href="https://github.com/sawwqib/Meow-Bin">GitHub</a>
-      </nav>
+      <div class="header-content">
+        <div class="logo">
+          <i class="fab fa-bin"></i>
+          <span>Bin Changer</span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="https://github.com/sawwqib">GitHub</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </header>
 
-  <section class="hero">
-    <img src="https://res.cloudinary.com/datfjlguq/image/upload/v1761464614/bqgyegpgvb6wvyevhkqt.gif" alt="Pop Cat">
-    <h1>Meow Bin</h1>
-    <p>Easily change your Windows Recycle Bin to Cat icons</p>
-    <a href="images.zip" download class="btn btn-primary" id="downloadBtn">Download</a>
-    <a href="https://github.com/sawwqib/Meow-Bin" class="btn btn-outline">Open Source</a>
-    <br></br>
-    <div class="counter-container">
-      <div class="counter-badge">
-        <span>Total Downloads</span>
-        <img src="https://count.getloli.com/@meowbinwebsite?name=meowbinwebsite&theme=morden-num&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto" alt="Download Counter" id="counterImage">
-      </div>
-    </div>
-  </section>
-
-  <section class="feature">
-    <div class="container feature-content">
-      <div class="feature-text">
-        <h2>Easy to change</h2>
-        <p>Go to Settings <b>></b> Themes <b>></b> Desktop Icon Settings & Select Cat Images For Recycle bin.</p>
-      </div>
-      <div class="feature-image">
-        <img src="https://res.cloudinary.com/datfjlguq/image/upload/v1761464632/funq18mt72fb9iy0ydfi.png" alt="Demo Screenshot">
-      </div>
-    </div>
-  </section>
-
-  <!-- New Download Button Section -->
-  <section class="download-section">
+  <!-- Hero Section -->
+  <section class="hero" id="home">
     <div class="container">
-      <h2>Want The Hitler One</h2>
-      <a href="hitler.zip" download class="download-button-container">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdv4mkW7dhCG6NicqBFG0quVVYD8mAlBRq2wNrPszigQK6BhNBV0SKy32mKibkpmdBDCM&usqp=CAU" alt="Cat Icons Preview">
-        <div class="download-overlay">
-          <span class="btn">Download Now</span>
+      <div class="hero-content">
+        <div class="hero-image">
+          <img src="https://res.cloudinary.com/datfjlguq/image/upload/v1761656083/lpbaykt207u1qzdpwf6g.png" alt="logo">
         </div>
-      </a>
+        <h1>Transform Your <span>Recycle Bin</span></h1>
+        <p>Easily customize your Windows desktop Custom Recycle Bin icons. Simple, fun, and completely free!</p>
+        <div class="hero-buttons">
+          <a href="ThemeChanger.ps1" class="btn btn-primary">Download Now</a>
+          <a href="#how-to-use" class="btn btn-outline">How to Use</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <footer>
-    <div class="container footer-content">
-      <div>
-        <h3 style="color:white;">About</h3>
-        <p>Meow Bin: memeify your Recycle Bin icons easily.</p>
+  <!-- How to Use Section -->
+  <section class="how-to-use" id="how-to-use">
+    <div class="container">
+      <div class="how-to-use-content">
+        <div class="how-to-use-text">
+          <h2>How to Use Bin Changer</h2>
+          <p>Follow these simple steps to transform your Recycle Bin in minutes</p>
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>Download the Setup</h4>
+                <p>Get the ThemeChanger.ps1 by clicking the download button above</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>Run The file</h4>
+                <p>Right Click And run With PowerShell</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>Open Desktop Icon Settings</h4>
+                <p>Right-click on your desktop, select "Personalize", then "Themes", and finally "Desktop icon settings"</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h4>Select Theme</h4>
+                <p>Type the theme number you want to apply</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">5</div>
+              <div class="step-content">
+                <h4>Enjoy Your New Look</h4>
+                <p>enjoy your new Recycle Bin icon!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="how-to-use-visual">
+          <div class="gif-container">
+            <img src="https://res.cloudinary.com/datfjlguq/image/upload/v1761464632/funq18mt72fb9iy0ydfi.png" alt="How to Use Meow Bin">
+          </div>
+        </div>
       </div>
-      <div>
-        <h3 style="color:white;">Connect</h3>
-        <div class="social-icons">
+    </div>
+  </section>
+
+  <!-- Themes Section -->
+  <section class="themes" id="themes">
+    <div class="container">
+      <div class="section-title">
+        <h2>Available Icon Themes</h2>
+        <p>Browse collection of Recycle Bin icons</p>
+      </div>
+      <div class="themes-grid">
+        <div class="theme-card">
+          <div class="theme-image">
+            <img src="https://res.cloudinary.com/datfjlguq/image/upload/v1761464614/bqgyegpgvb6wvyevhkqt.gif" alt="Cat Theme">
+          </div>
+          <div class="theme-content">
+            <h3>Cat</h3>
+            <p>Meme Cat Theme</p>
+          </div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-image">
+            <img src="https://res.cloudinary.com/datfjlguq/image/upload/v1761654861/dtyc0bgrmfleghatqpv3.gif" alt="Hitler Theme">
+          </div>
+          <div class="theme-content">
+            <h3>Hitler</h3>
+            <p>Hitler Theme</p>
+            <div class="theme-tags">
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Meow Bin</h3>
+          <p>Transform your Windows Recycle Bin with custom icons. Simple, fun, and completely free!</p>
+          <div class="social-icons">
             <a href="https://sawwqib.vercel.app"><i class="fas fa-globe"></i></a>
             <a href="https://github.com/sawwqib"><i class="fab fa-github"></i></a>
             <a href="https://t.me/sawwqib"><i class="fab fa-telegram"></i></a>
+          </div>
         </div>
       </div>
+        
+      <div class="copyright">
+        <p>&copy; 2025 Meow Bin | Made With <i class="fas fa-heart" style="color: var(--primary);"></i> By <a href="https://sawwqib.vercel.app">Saqib</a></p>
+      </div>
     </div>
-    <p style="margin-top:30px;text-align:center;">© 2025 Meow Bin | Made With &hearts; By <a href="https://sawwqib.vercel.app">Saqib</a></p>
   </footer>
 </body>
 </html>
