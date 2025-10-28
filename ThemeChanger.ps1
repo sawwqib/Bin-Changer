@@ -3,7 +3,7 @@ $recycle_bin_themes_path = "$env:userprofile\Pictures\RecycleBinThemes"
 $ProgressPreference = "SilentlyContinue"
 
 # Your themes
-$supported_themes = @("cat", "hitler")
+$supported_themes = @("cat", "hitler", "fries")
 
 Write-Host @"
  	    BIN CHANGER
@@ -40,8 +40,8 @@ if ($choice -eq 0) {
 }
 
 $selected_theme = $supported_themes[$choice - 1]
-$empty_icon_url = "https://raw.githubusercontent.com/sawwqib/Meow-Bin/main/themes/$selected_theme/empty.ico"
-$full_icon_url  = "https://raw.githubusercontent.com/sawwqib/Meow-Bin/main/themes/$selected_theme/full.ico"
+$empty_icon_url = "https://raw.githubusercontent.com/sawwqib/Bin-Changer/main/themes/$selected_theme/empty.ico"
+$full_icon_url  = "https://raw.githubusercontent.com/sawwqib/Bin-Changer/main/themes/$selected_theme/full.ico"
 
 $theme_folder = "$recycle_bin_themes_path\$selected_theme"
 $empty_icon_path = "$theme_folder\empty.ico"
@@ -58,3 +58,4 @@ writeToDefaultIconRegistry "empty" "$empty_icon_path,0"
 
 Stop-Process -ProcessName explorer -Force
 Write-Host "Recycle Bin theme applied: $selected_theme ✅"
+
